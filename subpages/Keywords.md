@@ -1,5 +1,7 @@
 # Keywords
 
+![image](./1.png)
+
 ## Semantic Segmantation
 Semantic Segmantation은 이미지의 각 픽셀을 사전 정의된 클래스 중 하나로 분류하는 작업이다.
 
