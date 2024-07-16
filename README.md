@@ -10,7 +10,11 @@
 
 1. 먼저, semantic, instance, panoptic segmentation 각 도메인의 실제 데이터에 대해 단일 multi-task 훈련 프로세스 내에서 훈련을 가능하게 하는 task-conditioned joint training strategy를 제안합니다. 
 2. 두 번째로, 모델이 주어진 작업에 맞게 동적으로 적응하도록 작업 토큰을 도입합니다. 
-3. 세 번째로, 훈련 중 작업 간 및 클래스 간 구분을 명확히 하기 위해 쿼리-텍스트 대조 손실을 사용합니다. 
+3. 세 번째로, 훈련 중 작업 간 및 클래스 간 구분을 명확히 하기 위해 쿼리-텍스트 대조 손실을 사용합니다.
+
+### [Keywords](./subpages/Keywords.md)
+
+### [Evaluation Metrics](./subpages/Evaluation_Metrics.md)
 
 # 1. Introduction
 
