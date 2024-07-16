@@ -1,5 +1,7 @@
 # OneFormer: One Transformer to Rule Universal Image Segmentation
 
+[Papers with Code - ADE20K val Benchmark (Instance Segmentation)](https://paperswithcode.com/sota/instance-segmentation-on-ade20k-val)
+
 ![Universal Image Segmentations](./subpages/2.png)
 
 ### Abstract
@@ -82,5 +84,3 @@ Panoptic architecture를 사용하는 모델은 3가지 segmentation 방식에 �
 ### ..
 
 # 5. Conclusion
-
-[Papers with Code - ADE20K val Benchmark (Instance Segmentation)](https://paperswithcode.com/sota/instance-segmentation-on-ade20k-val)
