@@ -1,9 +1,11 @@
 # OneFormer: One Transformer to Rule Universal Image Segmentation
 
-CVPR 2023. [Paper] [Page] [Github]
-Jitesh Jain, Jiachen Li, MangTik Chiu, Ali Hassani, Nikita Orlov, Humphrey Shig
-SHI Labs | IIT Roorkee | Picsart AI Research (PAIR)
-10 Nov 2022
+> CVPR 2023. [Paper] [Page] [Github]<br/>
+> Jitesh Jain, Jiachen Li, MangTik Chiu, Ali Hassani, Nikita Orlov, Humphrey Shig<br/>
+> SHI Labs | IIT Roorkee | Picsart AI Research (PAIR)<br/>
+> 10 Nov 2022<br/>
+
+<br/>
 
 ![Untitled](./subpages/1.png)
 
@@ -37,7 +39,7 @@ Panoptic architecture를 사용하는 모델은 3가지 segmentation 방식에 �
     
     그들의 architecture에 task guidance가 없기 때문이라고 추측한다. 동시에 학습하거나, 단일 모델에서 학습할 때 작업 간 차이를 학습하는 것이 어렵기 때문이다. 우리는 이를 task input token “the task is {task}”를 사용하여 초점을 맞춘 작업에 조건화하여 사용한다. 이에 따라, 이 단일 모델은 훈련을 위해 task-guided된 architecture가 되고, 추론을 위해 task-dynamic된다.
     
-    {panoptic, instance, semantic} 작업을 균일하게 샘플링하고, 공동 훈련 과정에서 해당 실제 값(ground truth)을 사용하여 모델이 작업에 대한 편향이 없도록 합니다. 
+    {panoptic, instance, semantic} 작업을 균일하게 샘플링하고, 공동 훈련 과정에서 해당 실제 값(ground truth)을 사용하여 모델이 작업에 대한 편향이 없도록 한다.   
     
     Semantic, instance label로부터 panoptic annotation을 도출하여 훈련에 사용한다. 즉, 훈련 과정에서는 panoptic data만 필요하다. 
     
