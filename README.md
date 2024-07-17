@@ -131,7 +131,7 @@ Multi-task train-once 문제를 ‘task로 조건화된 공동 학습 전략(Tas
     - Semantic : only one amorphous binary mask
     - Instance : non-overlapping binary mask, only `thing` class, ignoring `stuff`
 3. 모든 집합을 돌며 text list( $T_{list}$ )를 {”a photo with a {CLS}”} 형식으로 생성한다. {CLS}는 class 이름이 들어간다
-4. 샘플 당 binary mask의 수가 다르기 때문에, 이를 처리하기 위해 $T_{list}$를 “a/an {task} photo” 로 패딩하여 길이가 $N_{text}$ $N_{text}$$T_{pad}$를 얻는다. 
+4. 샘플 당 binary mask의 수가 다르기 때문에, 이를 처리하기 위해 $T_{list}$를 “a/an {task} photo” 로 패딩하여 길이가 $N_{text}$인 $T_{pad}$를 얻는다. 
     
     → Query-text contrastive loss를 계산하기 위해서도 이 $T_{pad}$를 사용한다. (Sec 3.3)
     
@@ -147,7 +147,7 @@ a phanoptic photo}
 }
 ```
 
-토큰화되고 task-token ( $𝑄_{task}$ ) 에 매핑되는, “the task is {task}” 템플릿으로 구성된, task input( $I_{task}$ )을 사용하여 task에 대한 아키텍처를 조건화한다. 
+토큰화되고 task-token ( $Q_{task}$ ) 에 매핑되는, “the task is {task}” 템플릿으로 구성된, task input( $I_{task}$ )을 사용하여 task에 대한 아키텍처를 조건화한다. 
 
 → $Q_{task}$ 를 사용하여 task에 대해 OneFormer를 컨디셔닝한다. (Sec 3.2)
 
@@ -158,7 +158,7 @@ a phanoptic photo}
 - Text query ( $Q_{text}$ ): image의 segment들의 text-based representation
 - Object query ( $Q$ ): image의 segment들의 image-based representation
 
-![Untitled](./subpages/5.png)
+<p align="center"><img src="./subpages/5.png" width="50%" height="50%">
 
 $Q_{text}$
 
@@ -168,7 +168,7 @@ $N_{ctx}$개의 임베딩을 가진 Learnable text context embedding ( $Q_{ctx}$
 
 → $Q_{ctx}$는 샘플 이미지에 대해 통합된 text context를 학습하기 위해 사용하는 것이다.  Training 중에만 text query를 사용하며, inference 중에는 text mapper 모듈을 삭제하여 모델의 크기를 줄일 수 있다.
 
-![Untitled](./subpages/6.png)
+<p align="center"><img src="./subpages/6.png" width="50%" height="50%">
 
 $Q$
 
@@ -194,17 +194,11 @@ Sec 3.1에서 얘기했듯이, $T_{pad}$는 주어진 이미지에서 감지될 
 
 이 둘 간의 contrastive loss를 사용하면 query 표현의 task간 구별을 성공적으로 학습할 수 있으며, class간 차이에 주의를 기울이고 category 오분류를 줄이는 효과도 있다.
 
-$$
-{\mathcal L}_{Q \rightarrow Q_{\text{text}}} = -\frac{1}{B} \sum_{i=1}^{B} \log \frac{\exp(q_{i}^{\text{obj}} \odot q_{i}^{\text{txt}} / \tau)}{\sum_{j=1}^{B} \exp(q_{i}^{\text{obj}} \odot q_{j}^{\text{txt}} / \tau)}
-$$
+$${\mathcal L}_{Q \rightarrow Q_{\text{text}}} = -\frac{1}{B} \sum_{i=1}^{B} \log \frac{\exp(q_{i}^{\text{obj}} \odot q_{i}^{\text{txt}} / \tau) {\sum_{j=1}^{B} \exp(q_{i}^{\text{obj}} \odot q_{j}^{\text{txt}} / \tau)}$$
 
-$$
-{\mathcal L}_{Q_{\text{text}} \rightarrow Q} = -\frac{1}{B} \sum_{i=1}^{B} \log \frac{\exp(q_{i}^{\text{txt}} \odot q_{i}^{\text{obj}} / \tau)}{\sum_{j=1}^{B} \exp(q_{i}^{\text{txt}} \odot q_{j}^{\text{obj}} / \tau)}
-$$
+$${\mathcal L}_{Q_{\text{text}} \rightarrow Q} = -\frac{1}{B} \sum_{i=1}^{B} \log \frac{\exp(q_{i}^{\text{txt}} \odot q_{i}^{\text{obj}} / \tau)}{\sum_{j=1}^{B} \exp(q_{i}^{\text{txt}} \odot q_{j}^{\text{obj}} / \tau)}$$
 
-$$
-{\mathcal L}_{Q \leftrightarrow Q_{\text{text}}} = \mathcal{L}_{Q \rightarrow Q_{\text{text}}} + \mathcal{L}_{Q_{\text{text}} \rightarrow Q}
-$$
+$${\mathcal L}_{Q \leftrightarrow Q_{\text{text}}} = \mathcal{L}_{Q \rightarrow Q_{\text{text}}} + \mathcal{L}_{Q_{\text{text}} \rightarrow Q}$$
 
 B개의 object-text query쌍의 배치 ${(q^{obj}_i,x^{txt}_i)}^B_{i=1}$가 있다고 가정하자. 여기서 $q^{obj}_i$와 $q^{txt}_i$는 각각 i번째 쌍의 $Q$와 $Q_{text}$이다. Query 간의 유사도를 내적을 계산하여 측정한다. 전체 contrastive learning은 두가지 loss로 구성된다.
 
