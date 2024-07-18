@@ -186,7 +186,7 @@ Q' = { "a photo with a person", "a photo with a car", "the task is panoptic" ...
 
 Result  
 ```arduino
-Q = { "a photo with a person", "the task is panoptic", ...} + { "the task is panoptic" } 
+Q = { "a photo with a person", "a photo with a car", "the task is panoptic" ...} + { "the task is panoptic" } 
 ```
 
 → All-zeros 또는 random 초기화와 달리 task 기반 query 초기화와 $Q_{task}$와의 concat은 모델이 여러 segmentation task를 학습하는 데 중요하다. (Sec 4.3)
