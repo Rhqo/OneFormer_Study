@@ -153,12 +153,12 @@ a phanoptic photo}
 
 ## 3.2 Query Representations
 
-![Untitled](./subpages/4.png)
-
 - Text query ( $Q_{text}$ ): image의 segment들의 text-based representation
 - Object query ( $Q$ ): image의 segment들의 image-based representation
 
-<p align="center"><img src="./subpages/5.png" width="50%" height="50%">
+<p align="center"><img src="./subpages/5.png" width="50%" height="50%">  
+    
+![Untitled](./subpages/4.png)
 
 ### $Q_{text}$
 
@@ -172,7 +172,22 @@ $N_{ctx}$개의 임베딩을 가진 Learnable text context embedding ( $Q_{ctx}$
 
 ### $Q$
 
-Task token ( $Q_{task}$ ) 의 N-1번 반복으로 object query $Q'$을 초기화한 후, 2-layer transformer의 flatten된 1/4 scale의 feature guidance에 따라 $Q'$을 업데이트한다. 이 transformer에서 업데이트된 $Q'$은 $Q_{task}$와 concat되어 N개의 query들의, task로 컨디셔닝된 표현인, $Q$를 얻는다.
+Task token ( $Q_{task}$ ) 의 N-1번 반복으로 object query $Q'$을 초기화한 후, 2-layer transformer의 flatten된 1/4 scale의 feature guidance에 따라 $Q'$을 업데이트한다. 이 transformer에서 업데이트된 $Q'$은 $Q_{task}$와 concat되어 N개의 query들의, task로 컨디셔닝된 표현인, $Q$를 얻는다.  
+
+Initialize  
+```arduino
+Q' = { "the task is panoptic", "the task is panoptic", "the task is panoptic", ...}
+```
+
+Update  
+```arduino
+Q' = { "a photo with a person", "a photo with a car", "the task is panoptic" ...}
+```
+
+Result  
+```arduino
+Q = { "a photo with a person", "the task is panoptic", ...} + { "the task is panoptic" } 
+```
 
 → All-zeros 또는 random 초기화와 달리 task 기반 query 초기화와 $Q_{task}$와의 concat은 모델이 여러 segmentation task를 학습하는 데 중요하다. (Sec 4.3)
 
