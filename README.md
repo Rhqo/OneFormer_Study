@@ -160,7 +160,7 @@ a phanoptic photo}
 
 <p align="center"><img src="./subpages/5.png" width="50%" height="50%">
 
-$Q_{text}$
+### $Q_{text}$
 
 $T_{pad}$ 토큰화 후, 6-layer transformer의 text-encoder를 통해 인코딩한다. 인코딩된 $N_{text}$개의 임베딩은 input image의 “binary mask의 수”와 “해당 mask의 class”를 나타낸다. 
 
@@ -170,7 +170,7 @@ $N_{ctx}$개의 임베딩을 가진 Learnable text context embedding ( $Q_{ctx}$
 
 <p align="center"><img src="./subpages/6.png" width="50%" height="50%">
 
-$Q$
+### $Q$
 
 Task token ( $Q_{task}$ ) 의 N-1번 반복으로 object query $Q'$을 초기화한 후, 2-layer transformer의 flatten된 1/4 scale의 feature guidance에 따라 $Q'$을 업데이트한다. 이 transformer에서 업데이트된 $Q'$은 $Q_{task}$와 concat되어 N개의 query들의, task로 컨디셔닝된 표현인, $Q$를 얻는다.
 
