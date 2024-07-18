@@ -1,6 +1,6 @@
 # OneFormer: One Transformer to Rule Universal Image Segmentation
 
-> CVPR 2023. [Paper] [Page] [Github]<br/>
+> CVPR 2023. [[Paper](https://arxiv.org/abs/2211.06220)] [[Page](https://praeclarumjj3.github.io/oneformer)] [[Github](https://github.com/SHI-Labs/OneFormer)]<br/>
 > Jitesh Jain, Jiachen Li, MangTik Chiu, Ali Hassani, Nikita Orlov, Humphrey Shig<br/>
 > SHI Labs | IIT Roorkee | Picsart AI Research (PAIR)<br/>
 > 10 Nov 2022<br/>
